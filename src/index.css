@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+body {
+  background-image: linear-gradient(to top right, #4f46e5, #9333ea), url('https://www.transparenttextures.com/patterns/cubes.png');
+  background-blend-mode: overlay;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
