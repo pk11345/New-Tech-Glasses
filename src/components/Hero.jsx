@@ -28,38 +28,40 @@ const Hero = () => {
       </motion.p>
 
       {/* Stacked Images */}
-      <div className="relative flex justify-center items-center w-full max-w-4xl h-[400px] md:h-[450px] mx-auto group">
-        {images.map((num, index) => {
-          const baseTransforms = [
-            "rotate-[-10deg] translate-x-[-100px]",
-            "rotate-[0deg] translate-x-[0px]",
-            "rotate-[10deg] translate-x-[100px]",
-          ];
+   <div className="relative flex justify-center items-center w-full max-w-4xl h-[320px] md:h-[450px] mx-auto group">
+  {images.map((num, index) => {
+    // Smaller translateX for mobile, bigger for md+
+    const baseTransforms = [
+      "rotate-[-10deg] translate-x-[-60px] md:translate-x-[-100px]",
+      "rotate-[0deg] translate-x-[0px]",
+      "rotate-[10deg] translate-x-[60px] md:translate-x-[100px]",
+    ];
 
-          const isHovered = hoveredIndex === index;
-          const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
+    const isHovered = hoveredIndex === index;
+    const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
 
-          return (
-            <motion.img
-              key={num}
-              src={`/glass${num}.jpeg`}
-              alt={`Glass ${num}`}
-              className={`
-                absolute rounded-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-md object-cover w-[250px] md:w-[300px] h-[350px] md:h-[400px] transition-all duration-500 ease-in-out cursor-pointer
-                ${baseTransforms[index]}
-                ${isHovered ? "z-50 scale-110 rotate-0 translate-x-0" : ""}
-                ${!isHovered && !isOtherHovered ? "z-10" : ""}
-                ${!isHovered && isOtherHovered ? "z-0 opacity-50 scale-95" : ""}
-              `}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              style={{
-                pointerEvents: "auto",
-              }}
-            />
-          );
-        })}
-      </div>
+    return (
+      <motion.img
+        key={num}
+        src={`/glass${num}.jpeg`}
+        alt={`Glass ${num}`}
+        className={`
+          absolute rounded-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-md object-cover
+          w-[150px] h-[210px] md:w-[300px] md:h-[400px]
+          transition-all duration-500 ease-in-out cursor-pointer
+          ${baseTransforms[index]}
+          ${isHovered ? "z-50 scale-110 rotate-0 translate-x-0" : ""}
+          ${!isHovered && !isOtherHovered ? "z-10" : ""}
+          ${!isHovered && isOtherHovered ? "z-0 opacity-50 scale-95" : ""}
+        `}
+        onMouseEnter={() => setHoveredIndex(index)}
+        onMouseLeave={() => setHoveredIndex(null)}
+        style={{ pointerEvents: "auto" }}
+      />
+    );
+  })}
+</div>
+
 
       <motion.button
         whileHover={{ scale: 1.1 }}
